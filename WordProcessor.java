@@ -85,7 +85,12 @@ public class WordProcessor {
          *      streamOfLines.map(...).filter(a -> ...).map(...) and so on
          */
         
-        return null;
+        Stream<String> wordStream = Files.lines(Paths.get(filepath));
+    		wordStream = wordStream.filter(x -> x!= null && !x.equals("")); //filters Stream so only lines that are non-null and non-empty are in Stream
+    		wordStream = wordStream.map(String:: trim); //removes any extra space from each String in the Stream
+    		wordStream = wordStream.map(String :: toUpperCase); //changes all Strings to upperCase
+    		
+    		return wordStream;
     }
     
     /**
